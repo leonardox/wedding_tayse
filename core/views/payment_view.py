@@ -3,9 +3,11 @@ import json
 import stripe
 import mercadopago
 from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
+from core.models import Present
 from wedding import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -36,9 +38,14 @@ def process_payment(request):
     return JsonResponse({'id': session.id})
 
 
-def mercado_pago_init_payment(request, present):
+def payment(request, pk):
+    present = Present.objects.get(id=pk)
+    return redirect(_mercado_pago_init_payment(present))
 
-    sdk = mercadopago.SDK("PROD_ACCESS_TOKEN")
+
+def _mercado_pago_init_payment(present):
+
+    sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
 
     mercadopago_request = {
         "items": [
@@ -46,7 +53,7 @@ def mercado_pago_init_payment(request, present):
                 "id": "1234",
                 "title": present.name,
                 "description": present.description,
-                "picture_url": present.image.url,
+                "picture_url": f"https://tayseejunior.com.br{present.image.url}",
                 "category_id": "Presente",
                 "quantity": 1,
                 "currency_id": "BRL",
@@ -57,7 +64,7 @@ def mercado_pago_init_payment(request, present):
         "back_urls": {
             "success": "https://tayseejunior.com.br/success",
             "failure": "https://tayseejunior.com.br/cancel",
-            "pending": "https://tayseejunior.com.br/cancel",
+            "pending": "https://tayseejunior.com.br/success",
         },
         "auto_return": "all"
     }

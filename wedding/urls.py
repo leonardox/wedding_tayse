@@ -31,6 +31,7 @@ urlpatterns = [
     path('success/', SuccessView.as_view(), name="success"),
     path('cancel/', CalcelView.as_view(), name="cancel"),
     path('create_checkout_session/', payment_view.process_payment, name='create_checkout_session'),
+    path('payment/<int:pk>', payment_view.payment, name="payment"),
 ]
 
 if settings.DEBUG:

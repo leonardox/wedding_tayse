@@ -27,6 +27,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+CSRF_TRUSTED_ORIGINS = ['https://tayseejunior.com.br/', 'https://www.tayseejunior.com.br/', 'https://d3uyw0ydz7efpu.cloudfront.net/', ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +131,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_SECRET_KEY = 'sk_test_51Nb6MWJ3Yb0v8zNs25gOIyuhyZoSetD0GLuqZucpoaxe5546oWr9RTAC6V44cERzR1u4d7nhet9lEj7VgZPrHsxK00ehrVxMxZ'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51Nb6MWJ3Yb0v8zNs1KpGnNnC0zkJJGGrilirBJtncH7lqdiOV6gljRZiz6YGK45V1ZSnX4ULR7zZRoI4A0IQGEUl00IHLzap35'
+MERCADOPAGO_ACCESS_TOKEN='APP_USR-4832587485060804-011408-17ea961ceb31c2eb1cc09c557cc83e4b-430701745'

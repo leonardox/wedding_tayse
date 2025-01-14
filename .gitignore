@@ -1,1 +1,12 @@
 .idea/
+# Cache files and coverage reports
+*.egg-info/
+.eggs/
+*.cover
+*.coverage
+.cache/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/*
+*.py[cod]
+*$py.class

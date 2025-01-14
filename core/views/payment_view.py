@@ -40,10 +40,10 @@ def process_payment(request):
 
 def payment(request, pk):
     present = Present.objects.get(id=pk)
-    return redirect(_mercado_pago_init_payment(present))
+    return redirect(_mercado_pago_init_payment(present, "José", "Silva"))
 
 
-def _mercado_pago_init_payment(present):
+def _mercado_pago_init_payment(present, name, surname):
 
     sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
 
@@ -60,7 +60,6 @@ def _mercado_pago_init_payment(present):
                 "unit_price": present.price,
             },
         ],
-
         "back_urls": {
             "success": "https://tayseejunior.com.br/success",
             "failure": "https://tayseejunior.com.br/cancel",
@@ -68,13 +67,16 @@ def _mercado_pago_init_payment(present):
         },
         "auto_return": "all",
         "external_reference": present.id,
-
+        "notification_url": "https://tayseejunior.com.br/webhook",
+        "payer": {
+            "name": name,
+            "surname": surname,
+        }
     }
 
     preference_response = sdk.preference().create(mercadopago_request)
     preference = preference_response["response"]
 
-    print(preference)
     return preference['init_point']
 
 

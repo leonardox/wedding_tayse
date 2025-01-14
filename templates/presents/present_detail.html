@@ -1,0 +1,68 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="banner jarallax">
+        <div class="agileinfo-dot">
+            <div class="header">
+                {% include 'common/navbar.html' %}
+            </div>
+            <div class="wthree-heading">
+                <h2>Presentear</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <br>
+    <br>
+        <div class="card mb-3 text-center">
+            <img src="{{ present.image.url }}" class="card-img-top detail-image" alt="..." style="object-fit: scale-down;">
+            <div class="card-body">
+                <br>
+                <h2 class="card-title">{{ present.name}}</h2>
+                <h4 class="card-title">{{ present.description}}</h4>
+                <p class="card-text">R$ {{ present.price|floatformat:2 }}</p>
+                <button id="card-button" class="btn" style="background-color: #0a0647; color: #fff">Pagar com Cartão</button>
+                <a href="#" class="btn" style="background-color: rgba(152, 91, 21, 1); color: #fff">Pagar com PIX</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script>
+
+
+        let checkoutButton = document.getElementById('card-button');
+
+        checkoutButton.addEventListener('click', function () {
+            let stripe = Stripe('{{ key|safe }}');
+            let data = {
+                'price': {{ present.price|safe }}, 'name': '{{ present.name }}', 'card': 'Any'
+            }
+            fetch('/create_checkout_session/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    return stripe.redirectToCheckout({sessionId: session.id});
+                })
+                .then(function (result) {
+                    if (result.error) {
+                        console.error(result.error);
+                    } else {
+                        console.log("Payment successful", result.payment_intent);
+                    }
+                });
+        });
+    </script>
+
+{% endblock %}

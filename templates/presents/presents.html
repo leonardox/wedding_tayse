@@ -1,0 +1,39 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="banner jarallax">
+        <div class="agileinfo-dot">
+            <div class="header">
+                {% include 'common/navbar.html' %}
+            </div>
+            <div class="wthree-heading">
+                <h2>Lista de Presentes</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for p in presents %}
+                    <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
+                        <div class="card text-center" style="width: 25rem;">
+                            <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.name }}"
+                                 style="height: 190px; object-fit: scale-down;">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ p.name }}</h4>
+                                <h6 class="card-title">{{ p.description }}</h6>
+                                <p class="card-text">R$ {{ p.price|floatformat:2 }}</p>
+                                <a href="{% url 'present' p.id %}" class="btn btn-primary">Presentear</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

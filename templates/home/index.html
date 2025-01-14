@@ -1,0 +1,81 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="banner jarallax">
+        <div class="agileinfo-dot">
+            <div class="header">
+                {% include 'common/navbar.html' %}
+            </div>
+            <div class="w3layouts-banner">
+                <div class="container">
+                    <div class="w3-banner-info">
+                        <div class="w3l-banner-text">
+                            <h2>Tayse e Júnior</h2>
+                            <p>Convidam para o seu casamento</p>
+                            <p>26/04/2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w3ls-banner-info-bottom">
+                <div class="container">
+                    <div class="banner-address">
+                        <div class="col-md-4 banner-address-left">
+                            <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Igreja de Santo Antônio</p>
+                        </div>
+                        <div class="col-md-4 banner-address-left">
+                            <p><i class="fa-regular fa-envelope" aria-hidden="true"></i> <a
+                                    href="mailto:taysecc16@gmail.com">taysecc16@gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4 banner-address-left">
+                            <p><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> (87) 9 9196-5633 </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner-bottom">
+        <div class="container">
+
+            <div class="text-center col-md-12 wthree-services-left">
+                <img src="{% static 'images/convite2.png' %}">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="agile-footer-grids">
+                <div class="col-md-12 agile-footer-grid">
+                    <div class="col-md-6">
+                        <h4>Cerimônia</h4>
+                        <div class="agile-footer-info">
+                            <p>26/04/2025</p>
+                            <p>Igreja de Santo Antônio, Praça de Santo Antônio. Bom Conselho - PE</p>
+                            <p>19:30 Horas</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 address-footer">
+                        <h4>recepção</h4>
+                        <div class="agile-footer-info">
+                            <p>26/04/2025</p>
+                            <p>Prime Eventos, Sitio alto do açude. Bom Conselho - PE</p>
+                            <p>21:00 Horas</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}

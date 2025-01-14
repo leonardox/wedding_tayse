@@ -24,7 +24,7 @@ SECRET_KEY = '(1y2yszh9gg-=e1^d@p8=j5eoorvayp=j=n2i(^dh#*2n%ag2n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "boiling-plateau-13807.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Application definition

@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-CSRF_TRUSTED_ORIGINS = ['https://tayseejunior.com.br/', 'https://www.tayseejunior.com.br/', 'https://d3uyw0ydz7efpu.cloudfront.net/', ]
+CSRF_TRUSTED_ORIGINS = ['https://tayseejunior.com.br', 'https://www.tayseejunior.com.br','https://d3uyw0ydz7efpu.cloudfront.net/', ]
 
 # Application definition
 

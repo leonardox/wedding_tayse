@@ -1677,6 +1677,10 @@ button.btn1:hover{
 	-moz-opacity: 0;
 	filter: alpha(opacity=0);
 }
+
+.detail-image {
+        width: 600px;
+    }
 /*-- //to-top --*/
 /*-- responsive --*/
 @media(max-width:1080px){
@@ -1875,6 +1879,9 @@ button.btn1:hover{
     .card {
         width: 100%;
     }
+    .detail-image {
+        width: 100%;
+    }
 }
 @media(max-width:568px){
 	.agileits-logo {
@@ -2029,9 +2036,6 @@ button.btn1:hover{
     .card {
         width: 100%;
     }
-    .detail-image {
-        width: 90%;
-    }
 }
 @media(max-width:384px){
 	.w3l-banner-text h2 {
@@ -2130,6 +2134,3 @@ button.btn1:hover{
     height: 100px;
 }
 
-.detail-image {
-        width: 600px;
-    }

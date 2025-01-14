@@ -1,6 +1,9 @@
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import TemplateView
 
 from core.models import Present
+from core.views.payment_view import _mercado_pago_init_payment
 from wedding import settings
 
 
@@ -61,9 +64,13 @@ class PresentView(TemplateView):
     def get(self, request, *args, **kwargs):
         present = Present.objects.get(pk=kwargs['pk'])
         context = {
-            'some_dynamic_value': 'This text comes from django view!', 'present': present, 'key': settings.STRIPE_PUBLISHABLE_KEY
+            'present': present, 'key': settings.STRIPE_PUBLISHABLE_KEY
         }
         return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        present = Present.objects.get(id=request.POST.get('pk'))
+        return redirect(_mercado_pago_init_payment(present, request.POST.get('name'), request.POST.get('surname')))
 
 
 class SuccessView(TemplateView):

@@ -13,57 +13,90 @@
         </div>
     </div>
     <div class="container">
-    <br>
-    <br>
+        <br>
+        <br>
         <div class="card mb-3 text-center">
-            <img src="{{ present.image.url }}" class="card-img-top detail-image" alt="..." style="object-fit: scale-down;">
+            <img src="{{ present.image.url }}" class="card-img-top detail-image" alt="..."
+                 style="object-fit: scale-down;">
             <div class="card-body">
                 <br>
-                <h2 class="card-title">{{ present.name}}</h2>
-                <h4 class="card-title">{{ present.description}}</h4>
+                <h2 class="card-title">{{ present.name }}</h2>
+                <h4 class="card-title">{{ present.description }}</h4>
                 <p class="card-text">R$ {{ present.price|floatformat:2 }}</p>
-                <a href="{% url 'payment' present.id %}" class="btn" style="background-color: #0a0647; color: #fff">Pagar com PIX ou Cartão</a>
-{#                <a href="#" class="btn" style="background-color: rgba(152, 91, 21, 1); color: #fff">Pagar com PIX</a>#}
+{#                <a href="{% url 'payment' present.id %}" class="btn" style="background-color: #0a0647; color: #fff">Pagar#}
+{#                    com PIX ou Cartão</a>#}
+                {#                <a href="#" class="btn" style="background-color: rgba(152, 91, 21, 1); color: #fff">Pagar com PIX</a>#}
             </div>
         </div>
     </div>
-    <br>
-    <br>
 
+    <div class="container" style="display: flex; justify-content: center; margin-top: 25px">
+        <form method="post" style="width: 50%;">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name" class="form-label">Seu nome</label>
+                <input type="text" name="name" id="id_name" class="form-control">
+                <input type="text" name="pk" id="id_pk" class="form-control" hidden value="{{ present.id }}">
+            </div>
+            <div class="form-group mt-3">
+                <label for="id_surname" class="form-label">Sobrenome</label>
+                <input type="text" name="surname" id="id_surname" class="form-control">
+            </div>
+            <button id="submitButton" type="submit" class="btn" style="background-color: #0a0647; color: #fff; width: 100%; margin-bottom: 50px; margin-top: 15px;" disabled>Pagar
+                com PIX ou Cartão
+            </button>
+        </form>
+    </div>
 
-{#    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>#}
-{#    <script>#}
-{##}
-{##}
-{#        let checkoutButton = document.getElementById('card-button');#}
-{##}
-{#        checkoutButton.addEventListener('click', function () {#}
-{#            let stripe = Stripe('{{ key|safe }}');#}
-{#            let data = {#}
-{#                'price': {{ present.price|safe }}, 'name': '{{ present.name }}', 'card': 'Any'#}
-{#            }#}
-{#            fetch('/create_checkout_session/', {#}
-{#                method: 'POST',#}
-{#                headers: {#}
-{#                    'Content-Type': 'application/json',#}
-{#                },#}
-{#                body: JSON.stringify(data),#}
-{#            })#}
-{#                .then(function (response) {#}
-{#                    return response.json();#}
-{#                })#}
-{#                .then(function (session) {#}
-{#                    return stripe.redirectToCheckout({sessionId: session.id});#}
-{#                })#}
-{#                .then(function (result) {#}
-{#                    if (result.error) {#}
-{#                        console.error(result.error);#}
-{#                    } else {#}
-{#                        console.log("Payment successful", result.payment_intent);#}
-{#                    }#}
-{#                });#}
-{#        });#}
-{#    </script>#}
+    <script>
+    // Function to check form inputs and enable submit button
+    function checkFormFields() {
+        const nameField = document.getElementById('id_name').value.trim();
+        const surnameField = document.getElementById('id_surname').value.trim();
+        const submitButton = document.getElementById('submitButton');
+
+        // Enable button only if both fields are filled
+        submitButton.disabled = !(nameField && surnameField);
+    }
+
+    // Attach input event listeners to form fields
+    document.getElementById('id_name').addEventListener('input', checkFormFields);
+    document.getElementById('id_surname').addEventListener('input', checkFormFields);
+</script>
+
+    {#    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>#}
+    {#    <script>#}
+    {##}
+    {##}
+    {#        let checkoutButton = document.getElementById('card-button');#}
+    {##}
+    {#        checkoutButton.addEventListener('click', function () {#}
+    {#            let stripe = Stripe('{{ key|safe }}');#}
+    {#            let data = {#}
+    {#                'price': {{ present.price|safe }}, 'name': '{{ present.name }}', 'card': 'Any'#}
+    {#            }#}
+    {#            fetch('/create_checkout_session/', {#}
+    {#                method: 'POST',#}
+    {#                headers: {#}
+    {#                    'Content-Type': 'application/json',#}
+    {#                },#}
+    {#                body: JSON.stringify(data),#}
+    {#            })#}
+    {#                .then(function (response) {#}
+    {#                    return response.json();#}
+    {#                })#}
+    {#                .then(function (session) {#}
+    {#                    return stripe.redirectToCheckout({sessionId: session.id});#}
+    {#                })#}
+    {#                .then(function (result) {#}
+    {#                    if (result.error) {#}
+    {#                        console.error(result.error);#}
+    {#                    } else {#}
+    {#                        console.log("Payment successful", result.payment_intent);#}
+    {#                    }#}
+    {#                });#}
+    {#        });#}
+    {#    </script>#}
 
     <script src="https://www.mercadopago.com/v2/security.js" view="checkout"></script>
 {% endblock %}

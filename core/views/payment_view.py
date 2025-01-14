@@ -66,7 +66,9 @@ def _mercado_pago_init_payment(present):
             "failure": "https://tayseejunior.com.br/cancel",
             "pending": "https://tayseejunior.com.br/success",
         },
-        "auto_return": "all"
+        "auto_return": "all",
+        "external_reference": present.id,
+
     }
 
     preference_response = sdk.preference().create(mercadopago_request)
@@ -74,3 +76,8 @@ def _mercado_pago_init_payment(present):
 
     print(preference)
     return preference['init_point']
+
+
+def webhook(request):
+    print(request)
+    return JsonResponse({'body': request.body})

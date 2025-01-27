@@ -1681,6 +1681,10 @@ button.btn1:hover{
 .detail-image {
         width: 600px;
     }
+
+.btn-presentes {
+        width: 20%;
+    }
 /*-- //to-top --*/
 /*-- responsive --*/
 @media(max-width:1080px){
@@ -1855,6 +1859,10 @@ button.btn1:hover{
 	}
     .card {
         width: 100%;
+    }
+
+    .btn-presentes {
+        width: 50%;
     }
 }
 @media(max-width:600px){

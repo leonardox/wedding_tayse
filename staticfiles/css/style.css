@@ -4,6 +4,12 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+@font-face {
+    font-family: 'The Seasons';
+    src: url('/staticfiles/fonts/theseasons-ltit.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 body a {
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
@@ -253,7 +259,7 @@ ul.dropdown-menu {
 .w3l-banner-text {
     border: solid 10px #000000;
     padding: 4em 2em;
-    border-image: url(../images/con.png) 30 round;
+    border-image: url(../images/convite_ll.png) 30 round;
 }
 .w3l-banner-text h2{
 	color: #000000;
@@ -261,8 +267,8 @@ ul.dropdown-menu {
     margin: 0;
     letter-spacing: 10px;
     font-weight: 800;
-    text-transform: uppercase;
-    font-family: 'Josefin Sans', sans-serif;
+    /*text-transform: uppercase;*/
+    font-family: 'The Seasons', serif;
     -webkit-text-fill-color: transparent;
     background: -webkit-linear-gradient(transparent, transparent), url(../images/convite_ll.png) repeat;
     background: -o-linear-gradient(transparent, transparent);
@@ -274,7 +280,7 @@ ul.dropdown-menu {
     margin: 2em 0 0 0;
     letter-spacing: 3px;
     font-weight: 800;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     -webkit-text-fill-color: transparent;
     background: -webkit-linear-gradient(transparent, transparent), url(../images/fundo.png) repeat;
     background: -o-linear-gradient(transparent, transparent);

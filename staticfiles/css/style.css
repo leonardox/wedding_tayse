@@ -10,6 +10,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+  font-family: "SLight Regular";
+  src: url(../fonts/Slight-Regular.ttf);
+}
 body a {
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
@@ -58,6 +63,11 @@ body{
 .agileits-logo h1{
 	margin:0;
 }
+
+.spaces-bottom{
+	margin-top: 30px;
+}
+
 .agileits-logo h1 a{
 	font-size: 1.8em;
     text-transform: uppercase;
@@ -263,9 +273,9 @@ ul.dropdown-menu {
 }
 .w3l-banner-text h2{
 	color: #000000;
-    font-size: 4em;
+    font-size: 2.5em;
     margin: 0;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     font-weight: 800;
     /*text-transform: uppercase;*/
     font-family: 'The Seasons', serif;
@@ -274,14 +284,15 @@ ul.dropdown-menu {
     background: -o-linear-gradient(transparent, transparent);
     -webkit-background-clip: text;
 }
+
 .w3l-banner-text p{
-	color: #000000;
+	color: #FFFFFF;
     font-size: 1em;
     margin: 2em 0 0 0;
     letter-spacing: 3px;
     font-weight: 800;
     /*text-transform: uppercase;*/
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: #FFFFFF;
     background: -webkit-linear-gradient(transparent, transparent), url(../images/fundo.png) repeat;
     background: -o-linear-gradient(transparent, transparent);
     -webkit-background-clip: text;
@@ -311,6 +322,7 @@ ul.dropdown-menu {
     /*background: rgba(255, 255, 255, 0.85);*/
     background: #f7f6f1;
     padding: 1em 0;
+    font-size: 1.2em;
 }
 .banner-address-left{
 	text-align:center;
@@ -643,6 +655,16 @@ footer{
     text-align: center;
     margin: 0;
     letter-spacing: 3px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.wthree-heading h3{
+    color: #ffffff;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 2px;
     font-weight: 800;
     text-transform: uppercase;
     font-family: 'Josefin Sans', sans-serif;

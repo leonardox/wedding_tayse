@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from core.models import Present
+from core.models import Present, Category, Indication
 from core.views.payment_view import _mercado_pago_init_payment
 from wedding import settings
 
@@ -83,11 +83,38 @@ class SuccessView(TemplateView):
         return self.render_to_response(context)
 
 
-class CalcelView(TemplateView):
+class CancelView(TemplateView):
     template_name = 'payment/cancel.html'
 
     def get(self, request, *args, **kwargs):
         context = {
             'some_dynamic_value': 'This text comes from django view!',
         }
+        return self.render_to_response(context)
+
+
+class IndicationsView(TemplateView):
+    template_name = 'indications/indications.html'
+
+    def get(self, request, *args, **kwargs):
+        # present = Present.objects.get(pk=kwargs['pk'])
+        categories = Category.objects.all()
+        indications = Indication.objects.all()
+
+        indication_list = []
+
+        for category in categories:
+            indications = Indication.objects.filter(category=category)
+            if indications:
+                indication_obj = {
+                    'category': category.name,
+                    'items': indications
+                }
+
+                indication_list.append(indication_obj)
+
+        context = {
+            'indications': indication_list
+        }
+
         return self.render_to_response(context)

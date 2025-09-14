@@ -1,0 +1,55 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="banner jarallax">
+        <div class="agileinfo-dot">
+            <div class="header">
+                {% include 'common/navbar.html' %}
+            </div>
+            <div class="wthree-heading">
+                <h2>Indicações</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for indication in indications %}
+                    <div class="banner jarallax">
+                        <div class="agileinfo-dot">
+                            <div class="wthree-heading">
+                                <h3>{{ indication.category }}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery mt-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+
+                                {% for item in indication.items %}
+                                    <div class="col-12 col-md-4 d-flex justify-content-center">
+                                        <div class="card text-center"
+                                             style="width: 25rem; margin-bottom: 50px; margin-top: 50px;">
+                                            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}"
+                                                 style="height: 190px; object-fit: scale-down;">
+                                            <div class="card-body">
+                                                <h4 class="card-title">{{ item.name }}</h4>
+                                                <h6 class="card-title">{{ item.address }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'index' %}" class="btn btn-presentes"
+           style="background-color: #728359; color: #fff; margin-bottom: 40px; padding-top: 15px;height: 50px; text-align: center">Início</a>
+    </div>
+{% endblock %}
